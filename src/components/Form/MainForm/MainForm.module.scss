@@ -1,0 +1,37 @@
+.form {
+  width: 100%;
+}
+
+.formContainer {
+  margin-top: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 1.4rem;
+}
+
+.buttons {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  button {
+    margin-left: auto;
+  }
+  @media (max-width: 30rem) {
+    flex-direction: column-reverse;
+    gap: 2rem;
+    button {
+      width: 100%;
+    }
+  }
+}
+
+.backImg {
+  width: 0.9rem;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  padding-bottom: 0.2rem;
+}

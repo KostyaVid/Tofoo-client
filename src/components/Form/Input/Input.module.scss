@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+}
+
+.label {
+  padding-left: 1.5rem;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.input {
+  margin-top: 0.8rem;
+  width: 100%;
+  background-color: var(--primary-color);
+  padding: 0.7rem 1.5rem;
+  border-radius: 0.6rem;
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: normal;
+  &::placeholder {
+    font-size: 1rem;
+    font-weight: normal;
+    color: var(--place-holder-color);
+  }
+}
+
+.error {
+  color: var(--danger-color);
+  position: absolute;
+  top: 0;
+  right: 1.5rem;
+}
+
+.error ~ .input {
+  outline: 1px var(--danger-color) solid;
+}

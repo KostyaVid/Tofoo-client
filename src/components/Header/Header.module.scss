@@ -1,0 +1,33 @@
+.header {
+  width: 100%;
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.svgBack {
+  fill: var(--primary-color);
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
+  transition: fill 0.2s ease;
+  &:hover {
+    fill: var(--danger-color);
+  }
+}
+.buttonBurger {
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
+  margin-left: 3rem;
+}
+.svgBurger {
+  fill: var(--primary-color);
+}

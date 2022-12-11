@@ -1,0 +1,14 @@
+.buttonLink {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 0.7rem 1.6rem;
+  border-radius: 0.6rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #4e516b;
+    transition: background-color 0.1s ease;
+  }
+}

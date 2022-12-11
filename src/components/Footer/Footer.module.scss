@@ -1,0 +1,12 @@
+.footer {
+  background-color: var(--background-color);
+  min-height: 6rem;
+  color: var(--text-color);
+}
+
+.footer__container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
