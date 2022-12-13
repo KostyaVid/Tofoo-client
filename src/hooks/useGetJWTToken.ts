@@ -21,7 +21,7 @@ export const useGetJWTToken = (
         body: JSON.stringify(values),
       });
       if (res.status !== 200) {
-        fetchError(res, setServerError);
+        setServerError(await fetchError(res));
         return;
       }
 

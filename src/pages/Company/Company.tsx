@@ -30,7 +30,7 @@ const Company = () => {
       });
 
       if (res.status !== 200) {
-        fetchError(res, setServerError);
+        setServerError(await fetchError(res))
         return;
       }
       const { JWTToken, user }: { JWTToken: string; user: IUser } = await res.json();
@@ -49,7 +49,7 @@ const Company = () => {
         body: JSON.stringify(values),
       });
       if (res.status !== 200) {
-        fetchError(res, setServerError);
+        setServerError(await fetchError(res))
         return;
       }
       const { company, JWTToken } = await res.json();
