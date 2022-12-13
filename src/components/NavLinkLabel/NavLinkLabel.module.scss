@@ -1,12 +1,12 @@
 .link {
   display: block;
-  text-align: center;
   background-color: var(--primary-color);
   color: var(--text-color);
   padding: 0.5rem 1rem;
   border-radius: 0.6rem;
   font-weight: 600;
-  @media (max-width: 768px) {
-    width: 100%;
-  }
+}
+.active {
+  background-color: var(--background-color);
+  transition: background-color 0.3s ease-in-out;
 }

@@ -1,0 +1,30 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  z-index: 100;
+}
+.right {
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.top {
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+.left {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.bottom {
+  align-items: flex-end;
+  justify-content: center;
+}
