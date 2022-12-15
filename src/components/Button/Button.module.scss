@@ -4,7 +4,6 @@
   border-radius: 0.6rem;
   font-size: 1rem;
   font-weight: bold;
-  cursor: pointer;
   background-color: var(--primary-color);
 
   &:hover {
@@ -15,4 +14,7 @@
 
 button.disabled {
   background-color: #a7a8b1;
+  &:hover {
+    background-color: #a7a8b1;
+  }
 }

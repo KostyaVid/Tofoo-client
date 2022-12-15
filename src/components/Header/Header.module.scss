@@ -13,6 +13,12 @@
   gap: 1rem;
 }
 
+.desktopMenu {
+  @media (max-width: 996px) {
+    display: none;
+  }
+}
+
 .svgBack {
   fill: var(--primary-color);
   height: 2rem;
@@ -41,10 +47,10 @@
 
 .menu {
   flex-direction: column;
-
+  position: relative;
   align-items: stretch;
   background-color: var(--background-color);
-  padding: 2rem;
+  padding: 4.5rem 2rem 2rem;
   min-width: 12rem;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 1rem;
@@ -71,4 +77,12 @@
   @media (min-width: 769px) {
     margin-top: 0.5rem;
   }
+}
+
+.buttonClose {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  width: 1.5rem;
+  background-color: inherit;
 }

@@ -6,7 +6,7 @@ interface IInput {
   labelName: string;
   id: string;
   name: string;
-  placeholder: string;
+  placeholder?: string;
   type?: string;
 }
 

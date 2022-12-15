@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import s from './LinkLabel.module.scss';
 
@@ -7,7 +7,7 @@ interface ILabel {
   href: string;
 }
 
-const Label = ({ children, href }: ILabel) => {
+const Label: FC<ILabel> = ({ children, href }) => {
   return (
     <Link className={s.link} to={href}>
       {children}

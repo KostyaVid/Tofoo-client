@@ -10,11 +10,12 @@ interface IMainForm {
   serverError: string | null;
   handleSubmit: (values: Record<string, string>) => Promise<void>;
   SignupSchema: any;
-  initialValues: Record<string, string> & Record<string, string | number>;
+  initialValues: Record<string, string> & Record<string, string | number | Date | undefined>;
   children: ReactNode;
   submitButtonName: string;
   backLinkName?: string;
   backLinkHref?: string;
+  disableSubmit?: boolean;
 }
 
 const MainForm = ({
@@ -27,6 +28,7 @@ const MainForm = ({
   submitButtonName,
   backLinkName,
   backLinkHref,
+  disableSubmit,
 }: IMainForm) => {
   return (
     <MainContainer title={title} serverError={serverError}>
@@ -47,7 +49,7 @@ const MainForm = ({
                   {backLinkName}
                 </ButtonLink>
               )}
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting || disableSubmit}>
                 {submitButtonName}
               </Button>
             </div>

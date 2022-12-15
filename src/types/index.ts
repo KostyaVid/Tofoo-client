@@ -17,7 +17,6 @@ export interface IProject {
   status: Status;
   create_date: string;
   end_date: string;
-  company_id: number;
 }
 
 export interface IHomeUser extends IUser {

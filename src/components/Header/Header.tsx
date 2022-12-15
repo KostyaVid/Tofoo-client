@@ -1,24 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector, useFetchAuth } from '../../hooks';
 import cn from 'classnames';
 import Button from '../Button/Button';
 import LinkLabel from '../LinkLabel/LinkLabel';
 import Modal from '../Modal/Modal';
 import s from './Header.module.scss';
 import NavLinkLabel from '../NavLinkLabel/NavLinkLabel';
+import { logOut } from '../../store/slices/homeUserSlice';
 
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isMobile = useAppSelector((state) => state.screenSize.value);
+  const dispatch = useAppDispatch();
+  const fetchAuth = useFetchAuth();
   const [activeMenu, setActiveMenu] = useState(false);
   const { username, company_id } = useAppSelector((state) => state.homeUser);
-  const handleClickMenu = () => {
-    setActiveMenu((value) => !value);
-  };
-  const handleClickBack = () => {
-    navigate(-1);
+
+  const handleClickMenu = useCallback(() => setActiveMenu((value) => !value), []);
+  const handleClickCloseMenu = useCallback(() => setActiveMenu(false), []);
+  const handleClickBack = useCallback(() => navigate(-1), [navigate]);
+  const handleLogOut = async () => {
+    try {
+      const res = await fetchAuth('/api/logout');
+      if (res.status === 200) {
+        localStorage.removeItem('JWTToken');
+        dispatch(logOut());
+        navigate('/login');
+      }
+    } catch (err) {
+      console.log('Error Logout');
+    }
   };
 
   useEffect(() => {
@@ -29,8 +42,8 @@ const Header = () => {
     <header className={'container'}>
       <div className={s.header}>
         <img src="img/logo.svg" alt="ToFoo" />
-        {isMobile !== 'sm' && username && company_id && (
-          <div className={s.links}>
+        {username && company_id && (
+          <div className={s.links + ' ' + s.desktopMenu}>
             <NavLinkLabel href="/">Home</NavLinkLabel>
             <NavLinkLabel href="/company">Companies</NavLinkLabel>
             <NavLinkLabel href="/projects">Projects</NavLinkLabel>
@@ -53,6 +66,11 @@ const Header = () => {
       </div>
       <Modal modalPosition="right" isActive={activeMenu} handleClickOverlay={handleClickMenu}>
         <div className={s.links + ' ' + s.menu}>
+          <button className={s.buttonClose} aria-label="close menu" onClick={handleClickCloseMenu}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+              <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" />
+            </svg>
+          </button>
           {username && company_id && (
             <>
               {location.pathname !== '/' && <LinkLabel href="/">Home</LinkLabel>}
@@ -66,7 +84,7 @@ const Header = () => {
             </>
           )}
           {username ? (
-            <Button>Logout</Button>
+            <Button onClick={handleLogOut}>Logout</Button>
           ) : (
             <>
               <LinkLabel href="/login">Login</LinkLabel>
@@ -79,4 +97,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);

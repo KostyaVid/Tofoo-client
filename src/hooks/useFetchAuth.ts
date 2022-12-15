@@ -14,6 +14,7 @@ export const useFetchAuth = () => {
     if (res.status === 401) {
       const isSuccess = await sendJWTTokenToServer(JWTToken);
       if (isSuccess) return await fetch(input, init);
+      localStorage.removeItem('JWTToken');
       dispatch(logOut());
       navigate('/login', { state: { redirectName: location.pathname } });
     }

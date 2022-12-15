@@ -4,6 +4,9 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import Company from '../../pages/Company/Company';
 import Home from '../../pages/Home/Home';
 import Login from '../../pages/Login/Login';
+import ProjectCreate from '../../pages/ProjectCreate/ProjectCreate';
+import ProjectID from '../../pages/ProjectID/ProjectID';
+import Projects from '../../pages/Projects/Projects';
 import SignUp from '../../pages/SignUp/SignUp';
 import { setUser } from '../../store/slices/homeUserSlice';
 
@@ -55,7 +58,12 @@ const Body = () => {
         {!user.username ? (
           <Route path="*" element={<Navigate to={'/login'} />} />
         ) : user.company_id ? (
-          <Route path="/" element={<Home />} />
+          <>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/create" element={<ProjectCreate />} />
+            <Route path="/projects/:projectID" element={<ProjectID />} />
+          </>
         ) : (
           <Route path="*" element={<Navigate to={'/company'} />} />
         )}

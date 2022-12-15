@@ -39,7 +39,7 @@ const Modal: FC<IModal> = ({
     entered: { left: '0' },
     exiting: { left: '100vw' },
     exited: { left: '100vw' },
-    unmounted: { left: '100vw' },
+    unmounted: {},
   };
 
   const handleClickOverlayOwn = (event: MouseEvent<HTMLDivElement>) => {
@@ -54,7 +54,7 @@ const Modal: FC<IModal> = ({
   }, [isActive]);
 
   return ReactDOM.createPortal(
-    <Transition nodeRef={nodeRef} in={modalActive} timeout={duration}>
+    <Transition nodeRef={nodeRef} in={modalActive} timeout={duration} unmountOnExit={true}>
       {(state) => (
         <div
           ref={nodeRef}
@@ -70,4 +70,4 @@ const Modal: FC<IModal> = ({
   );
 };
 
-export default Modal;
+export default React.memo(Modal);
