@@ -12,14 +12,14 @@ import ReactDOM from 'react-dom';
 import cn from 'classnames';
 import s from './Modal.module.scss';
 
-interface IModal {
+interface ModalProps {
   children: ReactNode;
   isActive: boolean;
   modalPosition?: 'right' | 'top' | 'center' | 'left' | 'bottom';
   handleClickOverlay?: () => void;
   hideMode?: boolean;
 }
-const Modal: FC<IModal> = ({
+const Modal: FC<ModalProps> = ({
   children,
   modalPosition = 'center',
   handleClickOverlay,

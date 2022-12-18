@@ -2,12 +2,12 @@ import React, { FC, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import s from './LinkLabel.module.scss';
 
-interface ILabel {
+interface LabelProps {
   children?: ReactNode;
   href: string;
 }
 
-const Label: FC<ILabel> = ({ children, href }) => {
+const Label: FC<LabelProps> = ({ children, href }) => {
   return (
     <Link className={s.link} to={href}>
       {children}

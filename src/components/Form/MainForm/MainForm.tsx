@@ -5,7 +5,7 @@ import ButtonLink from '../../ButtonLink/ButtonLink';
 import MainContainer from '../MainContainer/MainContainer';
 import s from './MainForm.module.scss';
 
-interface IMainForm {
+interface MainFormProps {
   title: string;
   serverError: string | null;
   handleSubmit: (values: Record<string, string>) => Promise<void>;
@@ -29,7 +29,7 @@ const MainForm = ({
   backLinkName,
   backLinkHref,
   disableSubmit,
-}: IMainForm) => {
+}: MainFormProps) => {
   return (
     <MainContainer title={title} serverError={serverError}>
       <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={SignupSchema}>

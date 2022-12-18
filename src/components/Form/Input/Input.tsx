@@ -2,7 +2,7 @@ import { ErrorMessage, Field } from 'formik';
 import React from 'react';
 import s from './Input.module.scss';
 
-interface IInput {
+interface InputProps {
   labelName: string;
   id: string;
   name: string;
@@ -10,7 +10,7 @@ interface IInput {
   type?: string;
 }
 
-const Input = ({ labelName, id, name, placeholder, type = 'text' }: IInput) => {
+const Input = ({ labelName, id, name, placeholder, type = 'text' }: InputProps) => {
   return (
     <div className={s.container}>
       <label className={s.label} htmlFor={id}>

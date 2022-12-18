@@ -8,7 +8,7 @@ import MainForm from '../../components/Form/MainForm/MainForm';
 import fetchError from '../../components/utils/fetchError';
 import sendJWTTokenToServer from '../../components/utils/sendJWTTokenToServer';
 import { setCompany, setJWTToken, setUser } from '../../store/slices/homeUserSlice';
-import { IUser } from '../../types';
+import { User } from '../../types';
 import { useAppDispatch, useAppSelector, useFetchAuth, useServerErrorForms } from './../../hooks';
 import s from './Company.module.scss';
 
@@ -33,7 +33,7 @@ const Company = () => {
         setServerError(await fetchError(res))
         return;
       }
-      const { JWTToken, user }: { JWTToken: string; user: IUser } = await res.json();
+      const { JWTToken, user }: { JWTToken: string; user: User } = await res.json();
       dispatch(setUser({ ...user, JWTToken }));
       sendJWTTokenToServer(JWTToken);
     } catch (err) {

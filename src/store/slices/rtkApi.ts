@@ -1,8 +1,8 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithReAuth } from '../../components/utils/refreshSession';
-import { IProject } from '../../types';
+import { Project } from '../../types';
 
-type ProjectResponse = IProject[];
+type ProjectResponse = Project[];
 
 export const api = createApi({
   reducerPath: 'api',
@@ -19,11 +19,11 @@ export const api = createApi({
             ]
           : [{ type: 'Projects', id: 'LIST' }],
     }),
-    getProject: build.query<IProject, number>({
+    getProject: build.query<Project, number>({
       query: (id) => ({ url: `projects/${id}` }),
       providesTags: (result, error, id) => [{ type: 'Projects', project_id: id }],
     }),
-    addProject: build.mutation<IProject, Partial<IProject>>({
+    addProject: build.mutation<Project, Partial<Project>>({
       query(body) {
         return {
           url: 'projects',

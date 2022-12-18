@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router';
 import { useAppDispatch } from '.';
 import fetchError from '../components/utils/fetchError';
 import { setUser } from '../store/slices/homeUserSlice';
-import { IUser } from '../types';
+import { User } from '../types';
 
 export const useGetJWTToken = (
   path: string,
@@ -25,7 +25,7 @@ export const useGetJWTToken = (
         return;
       }
 
-      const data: { user?: IUser; JWTToken?: string } = await res.json();
+      const data: { user?: User; JWTToken?: string } = await res.json();
       if (data?.JWTToken && data?.user) {
         localStorage.setItem('JWTToken', data.JWTToken);
         dispatch(setUser({ ...data.user, JWTToken: data.JWTToken }));

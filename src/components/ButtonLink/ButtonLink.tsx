@@ -3,13 +3,13 @@ import cn from 'classnames';
 import s from './ButtonLink.module.scss';
 import { Link } from 'react-router-dom';
 
-interface IButtonLink {
+interface ButtonLinkProps {
   href: string;
   className?: string;
   children?: React.ReactNode;
 }
 
-const ButtonLink = ({ href, children, className }: IButtonLink) => {
+const ButtonLink = ({ href, children, className }: ButtonLinkProps) => {
   const style = cn(s.buttonLink, className);
   return (
     <Link to={href} className={style}>

@@ -1,7 +1,7 @@
 export type Status = 0 | 1 | 2;
 export type StatusTodo = 0 | 1 | 2 | 3;
 
-export interface IUser {
+export interface User {
   user_id: number;
   username: string;
   email: string;
@@ -11,7 +11,7 @@ export interface IUser {
   company_name?: string | null;
 }
 
-export interface IProject {
+export interface Project {
   project_id: number;
   name: string;
   status: Status;
@@ -19,7 +19,7 @@ export interface IProject {
   end_date: string;
 }
 
-export interface IHomeUser extends IUser {
+export interface HomeUser extends User {
   JWTToken?: string;
 }
 

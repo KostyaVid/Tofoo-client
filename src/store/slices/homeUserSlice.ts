@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IHomeUser } from '../../types';
+import { HomeUser } from '../../types';
 
-const initialState: IHomeUser = {
+const initialState: HomeUser = {
   user_id: -1,
   username: '',
   email: '',
@@ -11,7 +11,7 @@ export const homeUserSlice = createSlice({
   name: 'homeUser',
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<IHomeUser>) => {
+    setUser: (state, action: PayloadAction<HomeUser>) => {
       return action.payload;
     },
     setJWTToken: (state, action: PayloadAction<string>) => {
