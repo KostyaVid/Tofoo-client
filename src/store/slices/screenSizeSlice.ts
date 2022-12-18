@@ -1,10 +1,11 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ScreenSize } from '../../types';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+export type ScreenSize = "sm" | "md" | "xl";
 
 const getScreenSize: () => ScreenSize = () => {
-  if (window.matchMedia('(max-width: 768px)').matches) return 'sm';
-  if (window.matchMedia('(max-width: 992px)').matches) return 'md';
-  return 'xl';
+  if (window.matchMedia("(max-width: 768px)").matches) return "sm";
+  if (window.matchMedia("(max-width: 992px)").matches) return "md";
+  return "xl";
 };
 
 const initialState: { value: ScreenSize } = {
@@ -12,7 +13,7 @@ const initialState: { value: ScreenSize } = {
 };
 
 export const screenSizeSlice = createSlice({
-  name: 'screenSize',
+  name: "screenSize",
   initialState,
   reducers: {
     setScreenSize: (state, action: PayloadAction<ScreenSize>) => {

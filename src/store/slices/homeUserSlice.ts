@@ -1,14 +1,27 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { HomeUser } from '../../types';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+export type User = {
+  user_id: number;
+  username: string;
+  email: string;
+  project_id?: number | null;
+  sprint_id?: number | null;
+  company_id?: number | null;
+  company_name?: string | null;
+};
+
+export type HomeUser = User & {
+  JWTToken?: string;
+};
 
 const initialState: HomeUser = {
   user_id: -1,
-  username: '',
-  email: '',
+  username: "",
+  email: "",
 };
 
 export const homeUserSlice = createSlice({
-  name: 'homeUser',
+  name: "homeUser",
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<HomeUser>) => {
@@ -22,7 +35,10 @@ export const homeUserSlice = createSlice({
     },
     setCompany: (
       state,
-      action: PayloadAction<{ company_id: number | null; company_name: string | null }>,
+      action: PayloadAction<{
+        company_id: number | null;
+        company_name: string | null;
+      }>
     ) => {
       return {
         ...state,
