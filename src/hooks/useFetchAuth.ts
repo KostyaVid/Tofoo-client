@@ -8,7 +8,7 @@ export const useFetchAuth = () => {
   const location = useLocation();
   const dispatch = useAppDispatch();
   let JWTToken: string | undefined | null = useAppSelector(
-    (state) => state.homeUser.JWTToken
+    (state) => state.homeUser.homeUser.JWTToken
   );
 
   return async (input: RequestInfo | URL, init?: RequestInit | undefined) => {

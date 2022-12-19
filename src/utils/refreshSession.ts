@@ -22,7 +22,7 @@ export const baseQueryWithReAuth: BaseQueryFn<
     if (!mutex.isLocked()) {
       const release = await mutex.acquire();
       try {
-        let JWTToken = (api.getState() as RootState).homeUser.JWTToken;
+        let JWTToken = (api.getState() as RootState).homeUser.homeUser.JWTToken;
         const refreshResult = await sendJWTTokenToServer(JWTToken);
         if (refreshResult) {
           result = await baseQuery(args, api, extraOptions);

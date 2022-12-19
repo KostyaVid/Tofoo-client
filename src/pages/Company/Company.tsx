@@ -72,11 +72,14 @@ const Company = () => {
     }
   };
 
-  if (user.company_name) {
+  if (user.homeUser.company_name) {
     return (
       <div className={"container " + s.container}>
-        <MainContainer serverError={serverError} title={user.company_name}>
-          {user.company_name}
+        <MainContainer
+          serverError={serverError}
+          title={user.homeUser.company_name}
+        >
+          {user.homeUser.company_name}
           <Button onClick={handleLeaveCompany}>Leave company</Button>
         </MainContainer>
       </div>
