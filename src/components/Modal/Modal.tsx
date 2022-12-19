@@ -6,22 +6,22 @@ import React, {
   useEffect,
   useRef,
   useState,
-} from 'react';
-import { Transition, TransitionStatus } from 'react-transition-group';
-import ReactDOM from 'react-dom';
-import cn from 'classnames';
-import s from './Modal.module.scss';
+} from "react";
+import { Transition, TransitionStatus } from "react-transition-group";
+import ReactDOM from "react-dom";
+import cn from "classnames";
+import s from "./Modal.module.scss";
 
 interface ModalProps {
   children: ReactNode;
   isActive: boolean;
-  modalPosition?: 'right' | 'top' | 'center' | 'left' | 'bottom';
+  modalPosition?: "right" | "top" | "center" | "left" | "bottom";
   handleClickOverlay?: () => void;
   hideMode?: boolean;
 }
 const Modal: FC<ModalProps> = ({
   children,
-  modalPosition = 'center',
+  modalPosition = "center",
   handleClickOverlay,
   isActive,
 }) => {
@@ -32,14 +32,13 @@ const Modal: FC<ModalProps> = ({
   const duration = 300;
   const defaultStyle: CSSProperties = {
     transition: `all ${duration}ms ease-in-out`,
-    left: '100vw',
+    left: "100vw",
   };
-  const transitionStyles: Record<TransitionStatus, CSSProperties> = {
-    entering: { left: '0' },
-    entered: { left: '0' },
-    exiting: { left: '100vw' },
-    exited: { left: '100vw' },
-    unmounted: {},
+  const transitionStyles: Partial<Record<TransitionStatus, CSSProperties>> = {
+    entering: { left: "0" },
+    entered: { left: "0" },
+    exiting: { left: "100vw" },
+    exited: { left: "100vw" },
   };
 
   const handleClickOverlayOwn = (event: MouseEvent<HTMLDivElement>) => {
@@ -54,19 +53,25 @@ const Modal: FC<ModalProps> = ({
   }, [isActive]);
 
   return ReactDOM.createPortal(
-    <Transition nodeRef={nodeRef} in={modalActive} timeout={duration} unmountOnExit={true}>
+    <Transition
+      nodeRef={nodeRef}
+      in={modalActive}
+      timeout={duration}
+      unmountOnExit={true}
+    >
       {(state) => (
         <div
           ref={nodeRef}
           style={{ ...defaultStyle, ...transitionStyles[state] }}
           className={styleOverlay}
           onClick={handleClickOverlayOwn}
-          aria-hidden={!modalActive}>
+          aria-hidden={!modalActive}
+        >
           {children}
         </div>
       )}
     </Transition>,
-    document.body,
+    document.body
   );
 };
 

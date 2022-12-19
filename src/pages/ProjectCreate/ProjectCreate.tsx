@@ -1,16 +1,20 @@
-import React, { useEffect } from 'react';
-import * as Yup from 'yup';
-import Input from '../../components/Form/Input/Input';
-import MainForm from '../../components/Form/MainForm/MainForm';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
-import { useAddProjectMutation } from '../../store/slices/rtkApi';
-import s from './ProjectCreate.module.scss';
-import { useServerErrorForms } from '../../hooks';
-import { useNavigate } from 'react-router';
+import React, { useEffect } from "react";
+import * as Yup from "yup";
+import Input from "../../components/Form/Input/Input";
+import MainForm from "../../components/Form/MainForm/MainForm";
+import { useAddProjectMutation } from "../../store/slices/rtkApi";
+import s from "./ProjectCreate.module.scss";
+import { useServerErrorForms } from "../../hooks";
+import { useNavigate } from "react-router";
 
 const SignupSchema = Yup.object().shape({
-  name: Yup.string().min(4, 'Too Short!').max(40, 'Too Long!').required('Required'),
-  end_date: Yup.date().min(new Date(), 'Deadline should be in the future').required('Required'),
+  name: Yup.string()
+    .min(4, "Too Short!")
+    .max(40, "Too Long!")
+    .required("Required"),
+  end_date: Yup.date()
+    .min(new Date(), "Deadline should be in the future")
+    .required("Required"),
 });
 
 const ProjectCreate = () => {
@@ -19,7 +23,10 @@ const ProjectCreate = () => {
   const [addProject, result] = useAddProjectMutation();
 
   useEffect(() => {
-    if (result.error) setServerError((result.error as FetchBaseQueryError)?.status?.toString());
+    if (result.error)
+      setServerError(
+        "status" in result.error ? result.error.status.toString() : "Error"
+      );
   }, [result.error, setServerError]);
 
   useEffect(() => {
@@ -30,15 +37,16 @@ const ProjectCreate = () => {
     addProject(values);
   };
   return (
-    <div className={'container ' + s.container}>
+    <div className={"container " + s.container}>
       <MainForm
         SignupSchema={SignupSchema}
-        initialValues={{ name: '', end_date: '' }}
+        initialValues={{ name: "", end_date: "" }}
         serverError={serverError}
         handleSubmit={handleSubmit}
         title="Create project"
         submitButtonName="Create"
-        disableSubmit={result.isLoading}>
+        disableSubmit={result.isLoading}
+      >
         <Input
           name="name"
           type="text"

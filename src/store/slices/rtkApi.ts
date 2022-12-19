@@ -1,5 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQueryWithReAuth } from "../../components/utils/refreshSession";
+import { baseQueryWithReAuth } from "../../utils/refreshSession";
 
 export type Status = "Opened" | "In Progress" | "Done";
 export type StatusTodo = Status | "Reviewer" | "Reopened";

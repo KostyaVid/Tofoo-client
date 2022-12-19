@@ -1,8 +1,8 @@
-import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
-import { useScreenSize } from './hooks';
-import './App.css';
-import Body from './components/Body/Body';
+import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
+import { useScreenSize } from "./hooks";
+import "./App.css";
+import View from "./components/View/View";
 
 function App() {
   useScreenSize();
@@ -11,7 +11,7 @@ function App() {
     <div className="body-container">
       <Header />
       <main className="main">
-        <Body />
+        <View />
       </main>
       <Footer />
     </div>
