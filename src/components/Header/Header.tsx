@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector, useFetchAuth } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import cn from "classnames";
 import Button from "../Button/Button";
 import LinkLabel from "../LinkLabel/LinkLabel";
@@ -14,7 +14,6 @@ const Header = () => {
   const navigate = useNavigate();
   const isMobile = useAppSelector((state) => state.screenSize.value);
   const dispatch = useAppDispatch();
-  const fetchAuth = useFetchAuth();
   const [activeMenu, setActiveMenu] = useState(false);
   const { username, company_id } = useAppSelector(
     (state) => state.homeUser.homeUser
@@ -28,8 +27,8 @@ const Header = () => {
   const handleClickBack = useCallback(() => navigate(-1), [navigate]);
   const handleLogOut = async () => {
     try {
-      const res = await fetchAuth("/api/logout");
-      if (res.status === 200) {
+      const res = await fetch("/api/logout");
+      if (res.status === 200 || res.status === 401) {
         localStorage.removeItem("JWTToken");
         dispatch(logOut());
         navigate("/login");
